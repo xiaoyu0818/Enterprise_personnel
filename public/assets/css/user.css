@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    max-width: 1920px;
+    height: 100vh;
+    animation-name: h;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+}
+/* 给body添加一个透明度由完全透明到完全不透明的动画 */
+@keyframes h{
+	from{opacity: 0;}
+	to{opacity: 1;}
+}
+/* 头部区域 */  
+.box{
+    width: 100%;
+    height: 8%;
+    background-color: #2F4056;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box>p{
+    color: #fff;
+    opacity: 0.9;
+    font-size: 25px;
+}
+.box>a{
+    font-size: 18px;
+    color: #fff;
+    position: absolute;
+    right: 50px;
+}
+/* 左边菜单栏区域 */
+.box2{
+    width: 200px;
+    height: 100%;
+    background-color: #393D49;
+    position: absolute;
+    top: 0;
+    transition: all 0.3s linear;
+}
+/* 左边菜单栏上面个人头像区域 */
+.box2 .xx{
+    width: 200px;
+    height: 120px;
+    background-color: #ffa000;  
+    transition: all 0.3s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box2 .xx .tx{
+    width: 60px;
+    height: 90px;
+    text-align: center;
+}
+.box2 .xx .tx>img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+.box2 .xx .tx>span{
+    font-size: 20px;
+}
+/* 菜单 */
+.box2>ul{
+    transition: all 0.3s linear;
+}
+/* 主体区域 */
+.box3{
+    max-width: 1720px;
+    height: 92%;
+    top: 0;
+}
+.box3>iframe{
+    width: 1300px;
+    max-height: 700px;
+    margin-left: 235px;
+    display: none;
+}
+.box3>div{
+    display: block;
+    margin-left: 215px;
+}
+
+/* 响应式 */
+@media (max-width:700px){
+    .box2{
+        width: 120px;
+        height: 100%;
+        transition: all 0.1s linear;
+    }
+    /* 个人信息框 */
+    .box2 .xx{
+        width: 120px;
+        height: 80px;
+        transition: all 0.1s linear;
+    }
+    /* 菜单 */
+    .box2>ul{
+        width: 120px;
+        transition: all 0.1s linear;
+    }
+    /* 标题 */
+    .box>p{
+        font-size: 20px;
+    }
+    /* 头像 */
+    .box2 .xx .tx>img{
+        width: 50px;
+        height: 50px;
+    }
+}

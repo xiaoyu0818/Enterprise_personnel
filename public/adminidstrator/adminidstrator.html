@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企业人事管理系统</title>
+  <link rel="stylesheet" href="../assets/css/adminidstrator.css">
+  <link rel="stylesheet" href="../assets/vendors/layui-v2.6.8/layui/css/layui.css">
+</head>
+
+<body>
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+      <div class="layui-logo layui-hide-xs layui-bg-black">企业人事管理系统</div>
+      <script>
+        //注意：导航 依赖 element 模块，否则无法进行功能性操作
+        layui.use('element', function () {
+          var element = layui.element;
+        });
+      </script>
+
+      <ul class="layui-nav layui-layout-left">
+        <li class="layui-nav-item layui-hide-xs layui-this"><a href="">首页</a></li>
+      </ul>
+
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+          <a href="javascript:;">
+            <img src="../assets/image/3.png" class="layui-nav-img">
+            zhangsan
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="#" onclick="logout()">注销</a></dd>
+          </dl>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域 -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">员工管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="yuangongxinxi()">员工信息管理</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">公告管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="gonggao()">公告信息</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">工资类别管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="gongzileibie()">工资类别信息</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">员工工资管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="yuangonggongzi()">员工工资信息</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">员工出勤管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="yuangongchuqing()">员工出勤查询</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">员工培训管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="yuangongpeixun()">员工培训通知</a></dd>
+              <dd><a href="#" onclick="peixunxiangmu()">培训项目信息</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">奖惩管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="yuangongjiangcheng()">员工奖惩信息</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">工资报表管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="gongzibaobiao()">工资报表信息</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item"><a href="javascript:;">其他功能后续开发中</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layui-body" id="yuangongxinxi">
+      <!-- 内容主体区域 -->
+      <div class="zhutineirong" id="zhuti" style="display: block;">
+
+        <!-- 主页内容start -->
+
+        <div class="quyu"></div>
+
+        <!-- 主页内容end -->
+
+      </div>
+      <iframe id="ifm" src="" frameborder="0"
+        style="width: 1280px;height: 630px;margin: 0;padding: 0 50px;display: none;margin-top: 20px;">
+
+      </iframe>
+    </div>
+
+    <div class="layui-footer">
+      <!-- 底部固定区域 -->
+      企业人事系统
+    </div>
+  </div>
+  <script src="../assets/js/adminidstrator.js"></script>
+  <script src="../assets/vendors/layui-v2.6.8/layui/layui.js"></script>
+  <script>
+    //JS 
+    layui.use(['element', 'layer', 'util'], function () {
+      var element = layui.element
+        , layer = layui.layer
+        , util = layui.util
+        , $ = layui.$;
+
+    });
+  </script>
+  <script src="../assets/vendors/jQuery/jquery-3.6.0.js"></script>
+  <script src="../assets/vendors/art-template/template-web.js"></script>
+</body>
+
+</html>

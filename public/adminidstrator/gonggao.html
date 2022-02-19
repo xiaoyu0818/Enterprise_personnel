@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公告管理</title>
+    <style>
+        .wenben>h2 {
+            margin-left: 15px;
+            font-weight: 400;
+        }
+
+        .wenben>p {
+            margin-left: 15px;
+            color: #333;
+        }
+
+        hr {
+            position: absolute;
+            top: 400px;
+            width: 1270px;
+        }
+
+        .gudin {
+            z-index: 10;
+            width: 1270px;
+            height: 215px;
+            background-color: #fff;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .gudin>form .input1 {
+            width: 300px;
+            height: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .gudin>form .neirong {
+            width: 1265px;
+            height: 130px;
+            margin-bottom: 5px;
+        }
+
+        .yangshi {
+            width: 500px;
+            height: 100px;
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="infoBox">
+        <script type="text/html" id="gonggaoTpl">
+            {{each gonggao}}
+    <div class="wenben" style="background-color: #f5f5f5;box-shadow: 5px 5px 5px #e0e0e0;border-radius: 5px;">
+        <h2>{{$value.biaoti}}</h2>
+        <p>{{$value.neirong}}</p>
+    </div>
+    {{/each}}
+</script>
+    </div>
+
+
+    <div style="height: 215px;"></div>
+    <div class="gudin">
+        <form action="" id="fabuForm">
+            <input placeholder="请输入标题" class="input1" type="text" name="biaoti"><br />
+            <textarea placeholder="请输入内容" class="neirong" name="neirong"></textarea><br />
+            <input class="fabu" type="submit" value="发布">
+        </form>
+    </div>
+    <script src="../assets/vendors/jQuery/jquery-3.6.0.js"></script>
+    <script src="../assets/vendors/art-template/template-web.js"></script>
+    <script>
+        // 获取数据
+        $.ajax({
+            type: 'get',
+            url: '/gonggao',
+            success: function (response) {
+                var html = template('gonggaoTpl', { gonggao: response })
+                $('.infoBox').html(html)
+            }
+        })
+        
+        // 提交信息
+        $('#fabuForm').on('submit', function () {
+            var formData = $(this).serialize();
+
+            // 发送请求，创建数据
+            $.ajax({
+                type: 'post',
+                url: '/gonggao',
+                data: formData,
+                success: function () {
+                    location.reload()
+                },
+                error: function (err) {
+                    console.log(err.message);
+                }
+            })
+            return false
+        })
+    </script>
+</body>
+
+</html>

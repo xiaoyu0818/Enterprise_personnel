@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    animation-name: h;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+}
+/* 给body添加一个透明度由完全透明到完全不透明的动画 */
+@keyframes h{
+	from{opacity: 0;}
+	to{opacity: 1;}
+}
+/* 修改弹出层 */
+.update{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.9);
+	position: absolute;
+	z-index: 100000;
+	display: none;
+}
+
+/* 主页内容区域 */
+.quyu{
+	max-width: 1370px;
+	height: 728px;
+}

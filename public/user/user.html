@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业人事管理系统</title>
+    <link rel="stylesheet" href="../assets/css/user.css">
+    <link rel="stylesheet" href="../assets/vendors/layui-v2.6.8/layui/css/layui.css">
+</head>
+<body>
+    <!-- 标题区域 -->
+    <div class="box">
+        <p>企业员工平台</p>
+        <a href="#" onclick="logout()">注销</a>
+    </div>
+    <!-- 左边菜单栏区域 -->
+    <div class="box2">
+        <!-- 头像区域 -->
+        <div class="xx" id="zt" onclick="zhuti()">
+            <div class="tx">
+                <img src="../assets/image/3.png" alt="">
+                <br /><span>lisi</span>
+            </div>
+        </div>
+        <script>
+          //注意：导航 依赖 element 模块，否则无法进行功能性操作
+          layui.use('element', function(){
+            var element = layui.element;
+          });
+          </script>
+
+        <!-- 菜单 -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">关于</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="guanyugongsi()">关于公司</a></dd>
+            </dl>
+          </li>
+      </ul> 
+      <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">公告</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="gongsijiaban()">公司加班通知</a></dd>
+              <dd><a href="#" onclick="gongsijiaxin()">公司加薪通知</a></dd>
+            </dl>
+          </li>
+      </ul> 
+      <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">工资</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="gongzichaxun()">工资查询</a></dd>
+              <dd><a href="#" onclick="xinzichaxun()">薪资查询</a></dd>
+            </dl>
+          </li>
+      </ul> 
+      <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">出勤</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="chuqingchaxun()">出勤查询</a></dd>
+            </dl>
+          </li>
+      </ul> 
+      <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">奖惩</a>
+            <dl class="layui-nav-child">
+              <dd><a href="#" onclick="jiangchengtonggao()">奖惩通告</a></dd>
+            </dl>
+          </li>
+      </ul> 
+  </div>
+  <!-- 正文区域 -->
+  <div class="box3">
+    <div id="zhengwen">
+      <h1>jjjjj</h1>
+    </div>
+      <iframe src="" frameborder="0" id="zhuti">
+
+      </iframe>
+  </div>
+    
+    <script src="../assets/js/user.js"></script>
+    <script src="../assets/vendors/layui-v2.6.8/layui/layui.js"></script>
+</body>
+</html>

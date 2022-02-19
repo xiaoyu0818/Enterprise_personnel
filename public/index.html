@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册登录</title>
+    <style>
+        *{
+	margin: 0;
+	padding: 0;
+}
+body{
+	display: flex;
+	justify-content: center;
+	animation-name: h;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	background-color: rgb(205, 199, 231);
+}
+@keyframes h{
+	from{opacity: 0;}
+	to{opacity: 1;}
+}
+/* 登录框 */
+.login-box{
+	position: relative;
+	top: 120px;
+	width: 1100px;
+	height: 550px;
+	box-shadow: 0 5px 15px rgba(0,0,0,.8);
+	display: flex;
+}
+/* 图片框 */
+.price{
+	width: 800px;
+	height: 550px;
+	background-image: url(./assets/image/1.jpg);
+	/* 图片自适应 */
+	background-size: cover;
+	/* opacity: 0.8; */
+	z-index: 100000;
+	transition: all 0.5s linear;
+}
+/* 用户登录信息框 */
+.login-text{
+	width: 300px;
+	height: 550px;
+	background-color: #FFFFFF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/* 登录部分 */
+.text{
+	width: 250px;
+	height: 500px;
+	margin-top: 70px;
+}
+.text>h1{
+	margin-bottom: 40px;
+}
+/* 文本框 */
+.userlogin{
+	font-size: 18px;
+	margin-bottom: 35px;
+	padding: 10px;
+	outline: none;
+	border: 0;
+	border-bottom: 2px solid rgba(0,0,0,0.2);
+}
+/* 提交按钮 */
+.userlogin-sub{
+	width: 90px;
+	height: 45px;
+	border-radius: 40px;
+	opacity: 0.9;
+}
+.userlogin-sub:hover{
+	transform: scale(0.9);
+	color: #FF6700;
+	background-color: #FFFFFF;
+}
+/* a标签 */
+.register{
+	text-decoration: none;
+	opacity: 0.7;
+	margin-right: 10px;
+}
+/* 注册框 */
+.register-text{
+	width: 300px;
+	height: 550px;
+	background-color: #FFFFFF;
+	position: absolute;
+}
+.register-text>h1{
+	margin-bottom: 35px;
+	margin-top: 63px;
+    margin-left: 30px;
+}
+/* 注册文本框 */
+.register-text .userregister{
+	margin-left: 28px;
+	font-size: 18px;
+	margin-bottom: 20px;
+	padding: 9px;
+	outline: none;
+	border: 0;
+	border-bottom: 2px solid rgba(0,0,0,0.2);
+}
+/* 注册按钮 */
+.register-text .userzc{
+	width: 90px;
+	height: 45px;
+	border-radius: 40px;
+	opacity: 0.9;
+	margin-top: 13px;
+	margin-bottom: 28px;
+}
+.userzc:hover{
+	transform: scale(0.9);
+	color: #FF6700;
+	background-color: #FFFFFF;
+}
+/* 注册a标签 */
+.register-text .registerzc{
+	text-decoration: none;
+	opacity: 0.7;
+	margin-right: 10px;
+	margin-left: 38px;
+}
+    </style>
+</head>
+<body>
+    <div class="login">
+        <!-- 登录框 -->
+        <div class="login-box">
+            <!-- 背景部分 -->
+            <div class="price" id="price1"></div>
+            <!-- 登录部分 -->
+            <div class="login-text">
+                <div class="text">
+                    <h1>登录</h1>
+					<form action="" id="users5">
+					<input type="text" id="userlogin1" class="userlogin" placeholder="请输入员工账号" name="username"/><br />
+                    <input type="password" id="userpwd" class="userlogin" placeholder="请输入密码" name="password"/><br />
+                    <input type="submit" id="usersub" class="userlogin userlogin-sub" value="登录"/>
+					</form>
+                    
+                    <br /><a href="#" class="register">忘记密码?</a>
+                    <a href="#" class="register" id="reg">注册账号</a>
+                </div>
+            </div>
+			<!-- 注册部分 -->
+			<div class="register-text">
+				<h1>注册</h1>
+				<input type="text" class="userregister" placeholder="请输入姓名"/><br />
+                <input type="text" class="userregister" placeholder="请创建员工账号"/><br />
+                <input type="text" class="userregister" placeholder="请输入密码"/><br />
+				<input type="submit" class="userregister userzc" value="注册"/><br />
+				<a href="#" class="registerzc" id="reg">已有账号?返回登录</a>
+			</div>
+        </div>
+    </div>
+
+	<script src="./assets/vendors/jQuery/jquery-3.6.0.js"></script>
+		
+    <script>
+		// 绑定提交事件
+		$('#users5').on('submit',function(){
+			var formData = $(this).serialize();
+			console.log(formData);
+			$.ajax({
+			type: 'post',
+			url: '/login',
+			data:formData,
+			success: function(){
+				location.href='/adminidstrator/adminidstrator.html'
+			}
+		})
+		// 阻止表单的默认提交
+			return false
+		})
+		
+
+        // 实现登录框用户登录
+function login(){
+	var user=document.getElementById("userlogin1").value;
+	var pwd=document.getElementById("userpwd").value;
+	if(user=="zhangsan" || user=="lisi"){
+		if(user=="zhangsan"){
+			if(pwd=="123456"){
+				alert("账号"+user+"登录成功")
+				// 实现页面跳转
+				window.location.replace("adminidstrator/adminidstrator.html");
+			}else{
+				alert("密码输入错误")
+				// 让光标停留在密码框
+				var pwd=document.getElementById("userpwd").focus();
+			}
+		}else if(user=="lisi"){
+			if(pwd=="654321"){
+				alert("账号"+user+"登录成功")
+				// 实现页面跳转
+				window.location.replace("user/user.html");
+			}else{
+				alert("密码输入错误")
+				// 让光标停留在密码框
+				var pwd=document.getElementById("userpwd").focus();
+			}
+		}
+	}else{
+		alert("该用户不存在");
+		// 让光标停留在用户输入框
+		var user=document.getElementById("userlogin1").focus();
+	}
+}
+
+	// 跳转注册
+	function register(){
+		var tupian = document.getElementById('price1');
+		tupian.style.transform='translate(300px,0)';
+		tupian.style.transition='all 0.5s linear';
+		tupian.style.backgroundImage='url(./assets/image/2.jpg)';
+	}
+	// 跳转登录
+	function denglu(){
+		var tupian = document.getElementById('price1'); 
+		tupian.style.transform='translate(0,0)';
+		tupian.style.transition='all 0.5s linear';
+		tupian.style.backgroundImage='url(./assets/image/1.jpg)';
+	}
+	// 忘记密码
+	function mm(){
+		alert('没事不要整这么复杂的密码！');
+	}
+    </script>
+</body>
+</html>

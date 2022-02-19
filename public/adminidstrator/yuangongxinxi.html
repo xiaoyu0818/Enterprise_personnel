@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>员工信息</title>
+  <link rel="stylesheet" href="../assets/vendors/layui-v2.6.8/layui/css/layui.css">
+  <style>
+    .update {
+      width: 500px;
+      height: 300px;
+      background-color: #fff;
+      position: absolute;
+      margin-left: 350px;
+      margin-top: 70px;
+      z-index: 100000;
+      box-shadow: 0 0 15px #000;
+      display: none;
+      text-align: center;
+    }
+
+    .update>h1 {
+      margin-top: 20px;
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+
+    .update>input {
+      margin: 5px;
+    }
+
+    .update>button {
+      margin-top: 25px;
+      font-size: 17px;
+    }
+
+    .update>button:hover {
+      color: rgb(255, 116, 23);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 修改员工信息 -->
+  <div>
+    <form action="" class="update" id="update">
+      <script type="text/html" id="updataTpl">
+      {{each data}}
+      <h1>修改信息</h1>
+      <b>ID:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" name="id" value="{{$value.id}}" readonly><br />
+      <b>Username:</b><input type="text" name="username" value="{{$value.username}}"><br />
+      <b>Password:</b>&nbsp;<input type="text" name="password" value="{{$value.password}}"><br />
+      <b>Zhiwu:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="zhiwu" value="{{$value.zhiwu}}"><br />
+      <input type="submit"  id="gengxiny" value="确定修改">
+      {{/each}}
+    </script>
+    </form>
+  </div>
+
+  <div class="kuang" style="text-align: center;">
+
+    <div class="layui-tab">
+      <ul class="layui-tab-title">
+        <li class="layui-this">员工基础信息</li>
+      </ul>
+      <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+
+          <table class="layui-table">
+            <colgroup>
+              <col width="100">
+              <col width="200">
+              <col width="250">
+              <col width="300">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Zhiwu</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="userBox">
+              <script type="text/html" id="userTpl">
+                  {{each data}}
+                  <tr>
+                    <td>{{$value.id}}</td>
+                    <td>{{$value.username}}</td>
+                    <td>{{$value.password}}</td>
+                    <td>{{$value.zhiwu}}</td>
+                    <td>
+                      <div class="layui-btn-container">
+                        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal del" data-id="{{$value.id}}"><i class="layui-icon" ></i> 删除</button>
+                        <button type="button" onclick="update()"  class="layui-btn layui-btn-sm updata" data-id="{{$value.id}}"><i class="layui-icon " ></i> 修改</button>
+                      </div> 
+                    </td>
+                  </tr>
+                  {{/each}}
+                </script>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+      layui.use('element', function () {
+        var element = layui.element;
+
+        //…
+      });
+    </script>
+  </div>
+  <script src="../assets/js/adminidstrator.js"></script>
+  <script src="../assets/vendors/jQuery/jquery-3.6.0.js"></script>
+  <script src="../assets/vendors/art-template/template-web.js"></script>
+  <script src="../assets/vendors/layui-v2.6.8/layui/layui.js"></script>
+
+  <script>
+
+    // 发送请求
+    $.ajax({
+      type: 'get',
+      url: '/users',
+      // 请求成功时发生
+      success: function (response) {
+        // 拼接字符串
+        var html = template('userTpl', { data: response })
+        // 插入数据
+        $('#userBox').html(html)
+      }
+    })
+
+    // 删除操作
+    $("#userBox").on('click', '.del', function () {
+      // 获取id属性的值
+      var id = $(this).attr('data-id');
+
+      if (confirm('确定吗')) {
+        // 发送请求
+        $.ajax({
+          type: 'delete',
+          url: '/users/usersDel?id=' + id,
+          success: function (response) {
+            location.reload()
+          }
+        })
+      }
+    })
+
+    // 修改操作
+    // 根据id查找需要修改的员工
+    $("#userBox").on('click', '.updata', function () {
+      var id = $(this).attr('data-id');
+
+
+      $.ajax({
+        type: 'get',
+        url: '/users/updata?id=' + id,
+        success: function (response) {
+          var html = template('updataTpl', { data: response })
+          $('#update').html(html)
+        }
+      })
+    })
+
+    // 提交修改信息
+    $('#update').on('submit', function () {
+      var id = $(this).find('[name="id"]').val();
+      var formData = $(this).serialize();
+
+
+      // 
+      $.ajax({
+        type: 'put',
+        url: '/users/updata',
+        data: formData,
+        success: function () {
+          location.reload()
+        }
+      })
+ 
+      return false
+    })
+
+
+  </script>
+</body>
+
+</html>
